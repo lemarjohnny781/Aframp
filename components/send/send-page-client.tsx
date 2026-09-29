@@ -115,7 +115,7 @@ export function SendPageClient() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center">
-      <div className="w-full max-w-md flex flex-col min-h-screen relative">
+      <div className="w-full max-w-md flex flex-col relative">
         {/* ── Header ── */}
         <header className="flex items-center gap-3 px-5 pt-6 pb-3">
           <button
@@ -153,7 +153,10 @@ export function SendPageClient() {
           <div className="flex flex-col flex-1 px-5 gap-5 pb-8">
             {/* Address input */}
             <div className="space-y-2">
-              <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+              <label
+                htmlFor="recipient-address"
+                className="text-xs font-medium text-muted-foreground uppercase tracking-wider"
+              >
                 Wallet address or username
               </label>
               <div className="relative">
@@ -161,6 +164,7 @@ export function SendPageClient() {
                   <Wallet className="w-4 h-4" />
                 </div>
                 <Input
+                  id="recipient-address"
                   value={recipientInput}
                   onChange={(e) => setRecipientInput(e.target.value)}
                   placeholder="G... or @username"
@@ -200,7 +204,7 @@ export function SendPageClient() {
 
         {/* ── Amount Step ── */}
         {step === 'amount' && (
-          <div className="flex flex-col flex-1 px-5 pb-6 gap-4">
+          <div className="flex flex-col flex-1 px-5 pb-6 gap-4 min-h-0">
             {/* Recipient pill */}
             <button
               onClick={() => setStep('recipient')}
@@ -221,7 +225,7 @@ export function SendPageClient() {
             </button>
 
             {/* Amount display */}
-            <div className="flex-1 flex flex-col items-center justify-center gap-2 min-h-[140px]">
+            <div className="flex-1 flex flex-col items-center justify-center gap-2 min-h-[120px] md:min-h-[140px] max-h-[280px] shrink-0 overflow-hidden">
               <div className="flex items-baseline gap-2">
                 <span
                   className={cn(
@@ -276,7 +280,7 @@ export function SendPageClient() {
             </div>
 
             {/* Numpad */}
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="grid grid-cols-3 gap-1.5 mt-auto">
               {NUMPAD_KEYS.flat().map((key) => (
                 <button
                   key={key}
